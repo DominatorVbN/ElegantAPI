@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-open protocol API {
+public protocol API {
     var baseURL: URL { get }
     var path: String { get }
     var method: Method { get }
@@ -19,7 +19,7 @@ open protocol API {
     func getURLRequest() -> URLRequest?
 }
 
-open extension API{
+public extension API{
     func getURLRequest() -> URLRequest? {
         let fullURL = baseURL.appendingPathComponent(self.path)
         var urlRequest = URLRequest(url: fullURL)
