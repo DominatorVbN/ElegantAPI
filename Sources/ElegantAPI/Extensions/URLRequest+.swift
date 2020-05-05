@@ -38,7 +38,8 @@ extension URLRequest{
         data.appendString("--\(boundary)\r\n")
         data.appendString("Content-Disposition: form-data; name=\"\(name)\"\r\n")
         data.appendString("\r\n")
-        data.appendString("\(value)\r\n")
+        data.append(value)
+        data.appendString("\r\n")
         return data as Data
     }
     
