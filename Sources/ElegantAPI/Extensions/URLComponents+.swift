@@ -14,8 +14,8 @@ extension URLComponents{
         self.queryItems = self.queryItems ?? [] + parameters.map {
             if $0.1 is String{
                 return URLQueryItem(name: $0.0, value: $0.1 as? String)
-            }else{
-                return URLQueryItem(name: String($0.0), value: String($0.1))
+            }else if $0.1 is LosslessStringConvertible{
+                return URLQueryItem(name: String($0.0), value: String($0.1 as! LosslessStringConvertible))
             }
         }
         .compactMap{$0}
