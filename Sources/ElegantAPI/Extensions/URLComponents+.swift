@@ -15,7 +15,7 @@ extension URLComponents{
             if $0.1 is String{
                 return URLQueryItem(name: $0.0, value: $0.1 as? String)
             }else{
-                return nil
+                return URLQueryItem(name: String($0.0), value: $0.1 as? String)
             }
         }
         .compactMap{$0}
