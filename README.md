@@ -1,3 +1,3 @@
 # ElegantAPI
 
-A description of this package.
+An URSessionDataTaskPublisher abstraction layer inspired by moya.
