@@ -28,7 +28,7 @@ open class NetworkLogger {
             requestLog += "\(key): \(value)\n"
         }
         if let body = request.httpBody{
-            let bodyString = NSString(data: body, encoding: String.Encoding.utf8.rawValue) ?? "Can't render body; not utf8 encoded";
+            let bodyString = body.prettyPrintedJSONString ?? String(data: body, encoding: .utf8) ?? "Can't render body; not utf8 encoded";
             requestLog += "\n\(bodyString)\n"
         }
 
@@ -36,7 +36,7 @@ open class NetworkLogger {
         print(requestLog)
     }
 
-    public class func log(data: Data?, response: HTTPURLResponse?, error: Error?){
+    public class func log(data: Data?, response: URLResponse?, error: Error?){
 
         let urlString = response?.url?.absoluteString
         let components = NSURLComponents(string: urlString ?? "")
@@ -50,17 +50,17 @@ open class NetworkLogger {
             responseLog += "\n\n"
         }
 
-        if let statusCode =  response?.statusCode{
-            responseLog += "HTTP \(statusCode) \(path)?\(query)\n"
+        if let httpResponse = response as? HTTPURLResponse{
+            responseLog += "HTTP \(httpResponse.statusCode) \(path)?\(query)\n"
         }
         if let host = components?.host{
             responseLog += "Host: \(host)\n"
         }
-        for (key,value) in response?.allHeaderFields ?? [:] {
+        for (key,value) in (response as? HTTPURLResponse)?.allHeaderFields ?? [:] {
             responseLog += "\(key): \(value)\n"
         }
         if let body = data{
-            let bodyString = NSString(data: body, encoding: String.Encoding.utf8.rawValue) ?? "Can't render body; not utf8 encoded";
+            let bodyString = body.prettyPrintedJSONString ?? String(data: body, encoding: .utf8) ?? "Can't render body; not utf8 encoded";
             responseLog += "\n\(bodyString)\n"
         }
         if let error = error{
@@ -69,5 +69,19 @@ open class NetworkLogger {
 
         responseLog += "<------------------------\n";
         print(responseLog)
+    }
+    
+}
+
+extension Data {
+    var prettyPrintedJSONString: String? {
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+            let prettyPrintedString = String(data: data, encoding: .utf8)
+            else{
+                return nil
+        }
+
+        return prettyPrintedString
     }
 }
