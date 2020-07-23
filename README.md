@@ -1,6 +1,6 @@
 # ElegantAPI
 
-An URSessionDataTaskPublisher abstraction layer inspired by moya.
+An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://github.com/Moya/Moya).
 
 ## Installation
 
