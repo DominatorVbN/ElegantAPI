@@ -1,5 +1,7 @@
 # ElegantAPI
 
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+
 An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://github.com/Moya/Moya).
 
 ## Installation
