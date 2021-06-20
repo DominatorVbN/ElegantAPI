@@ -1,6 +1,6 @@
 # ``ElegantAPI``
 
-Manage you API and Networking in you projects elegantly.
+Manage you API and Networking in you projects elegantly Changed.
 
 ## Overview
 
