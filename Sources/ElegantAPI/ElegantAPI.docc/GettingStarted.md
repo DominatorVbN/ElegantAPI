@@ -1,26 +1,6 @@
-# ElegantAPI
+# Getting Started
 
-[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![Build Status](https://travis-ci.com/DominatorVbN/ElegantAPI.svg?branch=master)](https://travis-ci.com/DominatorVbN/ElegantAPI)
-
-An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://github.com/Moya/Moya).
-
-## Installation
-
-Elegant api is available through Swift Package Manager
-
-add this url to `File -> Swift Packages -> Add new Dependecy`
-
-```
-https://github.com/DominatorVbN/ElegantAPI.git
-```
-
-or
-
-add the following as a dependency to your Package.swift:
-```
-.package(url: "https://github.com/DominatorVbN/ElegantAPI.git", .upToNextMajor(from: "0.0.9"))
-```
+Elegant API helps you manage and organise all your api call and there dependencies in an enum, which makes it easier to maintain and easier to write
 
 ## Usage
 
@@ -140,7 +120,6 @@ Now to perform this request
 
 guard let request = APIEndpoint.login.getURLRequest() else {return}
 
-// NetworkLogger is an micro library included inside Elegant api for logging network response and requests
 NetworkLogger.log(request: request)
 
 let publisher = URLSession.shared.dataTaskPublisher(for: req)
@@ -156,6 +135,8 @@ publisher.map { output in
 )
 
 ```
+
+- Tip: ``NetworkLogger`` is an micro library included inside Elegant api for logging network response and requests
 
 > You can also you the URLRequest for plain dataTask too.
 

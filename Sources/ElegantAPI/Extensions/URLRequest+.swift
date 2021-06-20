@@ -1,16 +1,18 @@
 //
 //  URLRequest+.swift
-//  SnapSponser
+//  ElegantAPI
 //
 //  Created by dominator on 16/04/20.
 //  Copyright © 2020 dominator. All rights reserved.
 //
 
 import Foundation
-extension URLRequest{
+
+public extension URLRequest {
+    
     /// Adds parameter as url queries
     /// - Parameter parameters: parameter to encode
-    public mutating func addURLQuery(parameter: [String: Any])-> Bool{
+    mutating func addURLQuery(parameter: [String: Any])-> Bool{
         guard let url = self.url else{ return false}
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         urlComponents?.addQuery(parameters: parameter)
@@ -19,7 +21,9 @@ extension URLRequest{
         return true
     }
     
-    public mutating func addMultipart(multipart array: [MultipartFormData]){
+    /// Update the request to have multipart data
+    /// - Parameter array: Array of mutipart data to be added
+    mutating func addMultipart(multipart array: [MultipartFormData]){
         let boundary = "Boundary-\(UUID().uuidString)"
         self.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         let httpBody = NSMutableData()
@@ -33,7 +37,13 @@ extension URLRequest{
         self.httpBody = httpBody as Data
     }
     
-    public func convertFormField(named name: String, value: Data, using boundary: String) -> Data {
+    /// Creates data in formate of form data specification
+    /// - Parameters:
+    ///   - name: Name of field
+    ///   - value: Value of field
+    ///   - boundary: Data boundary of field
+    /// - Returns: returns the formatted Data object
+    func convertFormField(named name: String, value: Data, using boundary: String) -> Data {
         let data = NSMutableData()
         data.appendString("--\(boundary)\r\n")
         data.appendString("Content-Disposition: form-data; name=\"\(name)\"\r\n")
@@ -43,7 +53,15 @@ extension URLRequest{
         return data as Data
     }
     
-    public func convertFileData(fieldName: String, fileName: String, mimeType: String, fileData: Data, using boundary: String) -> Data {
+    /// Creates data in format of content desposition (mutipart file upload) specification
+    /// - Parameters:
+    ///   - fieldName: Name of field
+    ///   - fileName: File name
+    ///   - mimeType: File's mime type
+    ///   - fileData: File's content
+    ///   - boundary: Data boundary of field
+    /// - Returns: returns the formatted data
+    func convertFileData(fieldName: String, fileName: String, mimeType: String, fileData: Data, using boundary: String) -> Data {
       let data = NSMutableData()
       data.appendString("--\(boundary)\r\n")
       data.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")

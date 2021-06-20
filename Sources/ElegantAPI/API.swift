@@ -1,6 +1,6 @@
 //
 //  API.swift
-//  SnapSponser
+//  ElegantAPI
 //
 //  Created by dominator on 16/04/20.
 //  Copyright © 2020 dominator. All rights reserved.
@@ -9,13 +9,31 @@
 import Foundation
 import Combine
 
+/// The protocol used to define the specifications necessary for a genarting an URLRequest
+///
+///  This protocol is intented to be implemented by an enum whoose cases reperesnt each endpoint of the api calls you want to make, and provide the requirement according to each case.
 public protocol API {
+    
+    /// The request's base `URL`.
     var baseURL: URL { get }
+    
+    /// The path to be appended to `baseURL` to form the full `URL`.
     var path: String { get }
+    
+    /// The HTTP method used in the request.
     var method: Method { get }
+    
+    /// Provides stub data for use in testing.
     var sampleData: Data { get }
+    
+    /// The type of HTTP task to be performed.
     var task: Task { get }
+    
+    /// The headers to be used in the request.
     var headers: [String: String]? { get }
+    
+    /// Genrates URLRequest combining all the properties of API protocol
+    /// - Returns: Genrated URLRequest
     func getURLRequest() -> URLRequest?
 }
 

@@ -1,6 +1,6 @@
 //
 //  NetworkLogger.swift
-//  SnapSponser
+//  ElegantAPI
 //
 //  Created by dominator on 02/05/20.
 //  Copyright © 2020 dominator. All rights reserved.
@@ -8,7 +8,11 @@
 
 import Foundation
 
+/// Utiliy class to log network events
 open class NetworkLogger {
+    
+    /// Log's the outgoing url request
+    /// - Parameter request: Request to be logged
     public class func log(request: URLRequest){
 
         let urlString = request.url?.absoluteString ?? ""
@@ -35,7 +39,12 @@ open class NetworkLogger {
         requestLog += "\n------------------------->\n";
         print(requestLog)
     }
-
+    
+    /// Log's the recieved server response
+    /// - Parameters:
+    ///   - data: Data coming from serevr
+    ///   - response: Response coming from serevr
+    ///   - error: Error coming from serevr
     public class func log(data: Data?, response: URLResponse?, error: Error?){
 
         let urlString = response?.url?.absoluteString
@@ -67,13 +76,14 @@ open class NetworkLogger {
             responseLog += "\nError: \(error.localizedDescription)\n"
         }
 
-        responseLog += "<------------------------\n";
+        responseLog += "\n<------------------------\n";
         print(responseLog)
     }
     
 }
 
-extension Data {
+public extension Data {
+    /// Formats the data in indented style
     var prettyPrintedJSONString: String? {
         guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
               let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
