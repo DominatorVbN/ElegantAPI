@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+ElegantAPI in ElegantAPI, no dependencies
+ElegantAPI in ElegantAPI, depends on:
+ElegantAPI in ElegantAPI (explicit)
+ElegantAPITests in ElegantAPI, depends on:
+ElegantAPI in ElegantAPI (explicit)

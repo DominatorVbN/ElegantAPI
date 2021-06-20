@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.5 (swiftlang-1300.0.19.104 clang-1300.0.18.4)"
+options: "cdce38708dd40858973136959ba40e76d04795252181667f32281dde3f2efda7"
+build_start_time: [1624199411, 276515960]
+build_end_time: [1624199422, 285886049]
+inputs:
+  "/Users/vagrant/git/Tests/ElegantAPITests/ElegantAPITests.swift": [1624199389, 253236770]
+  "/Users/vagrant/git/Tests/ElegantAPITests/XCTestManifests.swift": [1624199389, 253328800]

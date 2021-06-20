@@ -1,0 +1,4 @@
+module ElegantAPI {
+header "ElegantAPI-Swift.h"
+export *
+}

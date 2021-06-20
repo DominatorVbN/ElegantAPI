@@ -1,0 +1,65 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "PACKAGE-PRODUCT:ElegantAPI"
+    },
+    {
+      "guid" : "PACKAGE-PRODUCT:ElegantAPITests"
+    }
+  ],
+  "containerPath" : "/Users/vagrant/git",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "docbuild",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx12.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/vagrant/git/ElegantAPIBuild/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/vagrant/git/ElegantAPIBuild/Build/Products",
+      "derivedDataPath" : "/Users/vagrant/git/ElegantAPIBuild",
+      "indexDataStoreFolderPath" : "/Users/vagrant/git/ElegantAPIBuild/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/vagrant/git/ElegantAPIBuild/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/vagrant/git/ElegantAPIBuild/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "docbuild",
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
