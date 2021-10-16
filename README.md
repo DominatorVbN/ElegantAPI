@@ -7,7 +7,7 @@ An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://githu
 
 ## Installation
 
-Elegant api is available through Swift Package Manager
+Elegant api is available through Swift Package Manager some change
 
 add this url to `File -> Swift Packages -> Add new Dependecy`
 
