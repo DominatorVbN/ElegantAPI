@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 /// The protocol used to define the specifications necessary for a genarting an URLRequest
-///  Some additional 
+///  Some additional content
 ///  This protocol is intented to be implemented by an enum whoose cases reperesnt each endpoint of the api calls you want to make, and provide the requirement according to each case.
 public protocol API {
     
