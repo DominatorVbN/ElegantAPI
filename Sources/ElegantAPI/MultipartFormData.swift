@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Represents "multipart/form-data" for an upload.
+/// Represents "multipart/form-data" for an upload task.
 public struct MultipartFormData {
 
     public init(data: Data, name: String, fileName: String? = nil, mimeType: String? = nil) {
