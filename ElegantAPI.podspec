@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ElegantAPI'
-  s.version          = '0.0.9'
+  s.version          = '0.0.11'
   s.summary          = 'An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://github.com/Moya/Moya).'
   s.swift_versions   = '5.0'
   s.homepage         = 'https://github.com/DominatorVbN/ElegantAPI'
