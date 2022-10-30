@@ -1,7 +1,7 @@
 # ElegantAPI
 
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![Build Status](https://travis-ci.com/DominatorVbN/ElegantAPI.svg?branch=master)](https://travis-ci.com/DominatorVbN/ElegantAPI)
+[![Build](https://github.com/DominatorVbN/ElegantAPI/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/DominatorVbN/ElegantAPI/actions/workflows/build.yml)
 
 An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://github.com/Moya/Moya).
 
