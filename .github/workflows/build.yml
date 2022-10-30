@@ -24,4 +24,4 @@ jobs:
         brew install xcbeautify
     - name: Build
       run: |
-        set -o pipefail && xcodebuild clean build -project 'ElegantAPI.xcodeproj' -scheme 'ElegantAPI' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13' | xcbeautify
+        set -o pipefail && xcodebuild clean build -scheme 'ElegantAPI' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13' | xcbeautify
