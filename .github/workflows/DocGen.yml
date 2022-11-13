@@ -29,22 +29,14 @@ jobs:
       uses: devbotsxyz/xcode-select@v1
       with:
         version: "14.1"
-    - name: Generate Docs
-      run: |
-          xcodebuild docbuild \
-          -scheme ElegantAPI \
-          -derivedDataPath ~/ElegantAPIBuild \
-          -destination 'platform=iOS Simulator,name=iPhone 13'
-    - name: Process DocArchive
-      run: |
-        (xcrun --find docc) process-archive \
-        transform-for-static-hosting ~/ElegantAPIBuild/ElegantAPI.doccarchive \
-        --output-path ./public \
-        --hosting-base-path elegantapi
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: ./public
+    - name: Generate Docs Using Docc plugin
+    - run: |
+            swift package --allow-writing-to-directory ./public \
+            generate-documentation --target ElegantAPI \
+            --disable-indexing \
+            --transform-for-static-hosting \
+            --hosting-base-path elegantapi \
+            --output-path ./public
         
   deploy:
     environment:
