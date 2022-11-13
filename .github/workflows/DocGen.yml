@@ -30,7 +30,7 @@ jobs:
       with:
         version: "14.1"
     - name: Generate Docs Using Docc plugin
-    - run: |
+      run: |
             swift package --allow-writing-to-directory ./public \
             generate-documentation --target ElegantAPI \
             --disable-indexing \
