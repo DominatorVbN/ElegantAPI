@@ -35,7 +35,7 @@ jobs:
             generate-documentation --target ElegantAPI \
             --disable-indexing \
             --transform-for-static-hosting \
-            --hosting-base-path amitsamant.in/ElegantAPI \
+            --hosting-base-path ElegantAPI \
             --output-path ./public
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
