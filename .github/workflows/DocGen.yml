@@ -25,10 +25,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Pages
       uses: actions/configure-pages@v1
-    - name: "Select the latest stable Xcode 14.1"
-      uses: devbotsxyz/xcode-select@v1
-      with:
-        version: "14.1"
     - name: Generate Docs Using Docc plugin
       run: |
             swift package --allow-writing-to-directory ./public \
