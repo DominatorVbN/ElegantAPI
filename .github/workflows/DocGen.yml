@@ -37,6 +37,10 @@ jobs:
             --transform-for-static-hosting \
             --hosting-base-path elegantapi \
             --output-path ./public
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./public
         
   deploy:
     environment:
