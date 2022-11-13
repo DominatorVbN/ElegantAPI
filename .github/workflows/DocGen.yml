@@ -25,10 +25,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Pages
       uses: actions/configure-pages@v1
-    - name: Set up Swift
-      uses: swift-actions/setup-swift@v1
+    - name: "Select the latest stable Xcode 14.1"
+      uses: devbotsxyz/xcode-select@v1
       with:
-        swift-version: '5.6'
+        version: "14.1"
     - name: Generate Docs
       run: |
           xcodebuild docbuild \
