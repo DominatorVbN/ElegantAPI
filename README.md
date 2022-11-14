@@ -5,6 +5,10 @@
 
 An URSessionDataTaskPublisher abstraction layer inspired by [Moya](https://github.com/Moya/Moya).
 
+## Documentation
+
+https://amitsamant.in/ElegantAPI/documentation/elegantapi/
+
 ## Installation
 
 Elegant api is available through Swift Package Manager
@@ -158,4 +162,3 @@ publisher.map { output in
 ```
 
 > You can also you the URLRequest for plain dataTask too.
-
