@@ -17,12 +17,7 @@ jobs:
     name: Build
     runs-on: macos-12
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Install xcbeautify
-      run: |
-        brew install xcbeautify
-    - name: Build
-      run: |
-        swift build | xcbeautify
-      #  set -o pipefail && xcodebuild clean build -scheme 'ElegantAPI' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13' | xcbeautify
+      - name: Build
+        run: swift build
+      - name: Run tests
+        run: swift test
