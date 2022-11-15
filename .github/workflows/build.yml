@@ -13,11 +13,11 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build
-    runs-on: macos-12
-    steps:
-      - name: Build
-        run: swift build
-      - name: Run tests
-        run: swift test
+    build:
+      name: Build
+      runs-on: macos-latest
+      steps:
+        - name: Build
+          run: swift build -v
+        - name: Run tests
+          run: swift test -v
