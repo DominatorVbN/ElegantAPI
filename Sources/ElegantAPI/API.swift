@@ -67,15 +67,15 @@ public extension API{
                 return nil
             }
             switch bodyEncoding {
-            case .JSONEncoded:
+            case ParameterEncoding.JSONEncoded:
                 do{
-                    let data = try JSONSerialization.data(withJSONObject: bodyParameters, options: .prettyPrinted)
+                    let data = try JSONSerialization.data(withJSONObject: bodyParameters, options: JSONSerialization.WritingOptions.prettyPrinted)
                     urlRequest.httpBody = data
                 }catch{
                     print(error)
                     return nil
                 }
-            case .URLEncoded:
+            case ParameterEncoding.URLEncoded:
                 guard urlRequest.addURLQuery(parameter: bodyParameters) else{
                     print("Unable to add query items.")
                     return nil
@@ -93,14 +93,14 @@ public extension API{
             }
         case .requestParameters(let parameters, let encoding):
             switch encoding {
-            case .URLEncoded:
+            case ParameterEncoding.URLEncoded:
                 guard urlRequest.addURLQuery(parameter: parameters) else{
                     print("Unable to add query items.")
                     return nil
                 }
-            case .JSONEncoded:
+            case ParameterEncoding.JSONEncoded:
                 do{
-                    let data = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+                    let data = try JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
                     urlRequest.httpBody = data
                 }catch{
                     print(error)

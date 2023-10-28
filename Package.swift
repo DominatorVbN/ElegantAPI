@@ -1,9 +1,10 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.8
 
 import PackageDescription
 
 let package = Package(
     name: "ElegantAPI",
+    platforms: [.iOS(.v16), .macOS(.v13)],
     products: [
         .library(
             name: "ElegantAPI",
@@ -11,13 +12,18 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.0.0"),
+        .package(url: "https://source.skip.tools/skip.git", from: "0.7.8")
     ],
     targets: [
         .target(
             name: "ElegantAPI",
-            dependencies: []),
+            dependencies: [],
+            plugins: [.plugin(name: "skipstone", package: "skip")]
+        ),
         .testTarget(
             name: "ElegantAPITests",
-            dependencies: ["ElegantAPI"]),
+            dependencies: ["ElegantAPI"],
+            plugins: [.plugin(name: "skipstone", package: "skip")]
+        ),
     ]
 )

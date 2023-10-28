@@ -1,16 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "SwiftDocCPlugin",
-        "repositoryURL": "https://github.com/apple/swift-docc-plugin.git",
-        "state": {
-          "branch": null,
-          "revision": "3303b164430d9a7055ba484c8ead67a52f7b74f6",
-          "version": "1.0.0"
-        }
+  "pins" : [
+    {
+      "identity" : "skip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://source.skip.tools/skip.git",
+      "state" : {
+        "revision" : "36e703630b72b6b9677ba1e2e5cbf347bb33dec2",
+        "version" : "0.7.13"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swift-docc-plugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-docc-plugin.git",
+      "state" : {
+        "revision" : "3303b164430d9a7055ba484c8ead67a52f7b74f6",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
 }
