@@ -1,0 +1,11 @@
+# skip.tools per-configuration file
+
+#skip:
+#  package: 'skip.foundation'
+
+# the blocks to add to the build.gradle.kts
+build:
+  contents:
+    - block: 'dependencies'
+      contents:
+        - 'testImplementation("org.json:json:20180813")'
