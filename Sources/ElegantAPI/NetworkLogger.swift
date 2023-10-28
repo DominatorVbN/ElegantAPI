@@ -32,7 +32,7 @@ open class NetworkLogger {
             requestLog += "\(key): \(value)\n"
         }
         if let body = request.httpBody{
-            let bodyString = body.prettyPrintedJSONString ?? String(data: body, encoding: String.Encoding.utf8) ?? "Can't render body; not utf8 encoded";
+            let bodyString = body.prettyPrintedJSONString ?? String(data: body, encoding: .utf8) ?? "Can't render body; not utf8 encoded";
             requestLog += "\n\(bodyString)\n"
         }
 
@@ -69,7 +69,7 @@ open class NetworkLogger {
             responseLog += "\(key): \(value)\n"
         }
         if let body = data{
-            let bodyString = body.prettyPrintedJSONString ?? String(data: body, encoding: String.Encoding.utf8) ?? "Can't render body; not utf8 encoded";
+            let bodyString = body.prettyPrintedJSONString ?? String(data: body, encoding: .utf8) ?? "Can't render body; not utf8 encoded";
             responseLog += "\n\(bodyString)\n"
         }
         if let error = error{
@@ -87,7 +87,7 @@ public extension Data {
     var prettyPrintedJSONString: String? {
         guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
               let data = try? JSONSerialization.data(withJSONObject: object, options: [JSONSerialization.WritingOptions.prettyPrinted]),
-            let prettyPrintedString = String(data: data, encoding: String.Encoding.utf8)
+            let prettyPrintedString = String(data: data, encoding: .utf8)
             else{
                 return nil
         }

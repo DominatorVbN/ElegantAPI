@@ -1,9 +1,8 @@
-# skip.tools per-configuration file
-
-# the blocks to add to the build.gradle.kts
+# Configuration file for https://skip.tools project
+#
+# Kotlin dependencies and Gradle build options for this module can be configured here
 #build:
 #  contents:
 #    - block: 'dependencies'
 #      contents:
-#        - '// no new dependencies in SkipFoundationKtTests'
-# skip.tools per-configuration file
+#        - 'implementation("androidx.compose.runtime:runtime")'
