@@ -107,31 +107,58 @@ extension APIEndpoint: API{
 }
 
 ```
-And that's you can define all api requests
-Now to perform this request
 
-## Using Combine
-``` swift
+And that's it! You can define all API requests this way.
 
-guard let request = APIEndpoint.login.getURLRequest() else {return}
+## Making Requests
+
+### Using Async/Await
+
+```swift
+guard let request = APIEndpoint.login(emailId: "user@example.com", password: "password").getURLRequest() else { return }
 
 NetworkLogger.log(request: request)
 
-let publisher = URLSession.shared.dataTaskPublisher(for: req)
+do {
+    let (data, response) = try await URLSession.shared.data(for: request)
+    NetworkLogger.log(data: data, response: response as? HTTPURLResponse, error: nil)
 
-publisher.map { output in
-    NetworkLogger.log(data: output.data, response: output.response as? HTTPURLResponse, error: nil)
-    return output
-}.sink(
-    receiveCompletion: { },
-    receiveValue: { output in
-        print(output.data)
-    }
-)
-
+    // Decode your response
+    let result = try JSONDecoder().decode(YourResponseType.self, from: data)
+    print(result)
+} catch {
+    print("Request failed: \(error)")
+}
 ```
 
-- Tip: ``NetworkLogger`` is an micro library included inside Elegant api for logging network response and requests
+### Using Combine
 
-> You can also you the URLRequest for plain dataTask too.
+```swift
+guard let request = APIEndpoint.login(emailId: "user@example.com", password: "password").getURLRequest() else { return }
+
+NetworkLogger.log(request: request)
+
+let publisher = URLSession.shared.dataTaskPublisher(for: request)
+
+publisher
+    .map { output in
+        NetworkLogger.log(data: output.data, response: output.response as? HTTPURLResponse, error: nil)
+        return output.data
+    }
+    .decode(type: YourResponseType.self, decoder: JSONDecoder())
+    .sink(
+        receiveCompletion: { completion in
+            if case .failure(let error) = completion {
+                print("Request failed: \(error)")
+            }
+        },
+        receiveValue: { result in
+            print(result)
+        }
+    )
+```
+
+- Tip: ``NetworkLogger`` is a micro library included inside Elegant API for logging network requests and responses
+
+> You can also use the URLRequest for plain dataTask too.
 

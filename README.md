@@ -15,29 +15,29 @@ Elegant api is available through Swift Package Manager
 
 add this url to `File -> Swift Packages -> Add new Dependecy`
 
-```
+```bash
 https://github.com/DominatorVbN/ElegantAPI.git
 ```
 
 or
 
 add the following as a dependency to your Package.swift:
-```
-.package(url: "https://github.com/DominatorVbN/ElegantAPI.git", .upToNextMajor(from: "0.0.9"))
+```swift
+.package(url: "https://github.com/DominatorVbN/ElegantAPI.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 ## Usage
 
 import ElegentAPI
 
-``` swift
+```swift
 import ElegantAPI
 ```
 
 You have to declare an enum representing your api endpoints
 
-``` swift
-enum APIEndpoint{
+```swift
+enum APIEndpoint {
     case login(emailId: String, password: String)
     case getProfile
     case updateProfile(user: User)
@@ -45,9 +45,9 @@ enum APIEndpoint{
 }
 ```
 
-Implement the enum with protocol API which contains all the requirement 
+Implement the enum with protocol API which contains all the requirement
 
-``` swift
+```swift
 extension APIEndpoint: API{
 
     var baseURL: URL {
@@ -131,29 +131,57 @@ extension APIEndpoint: API{
 }
 
 ```
-And that's you can define all api requests
-Now to perform this request
 
-## Using Combine
-``` swift
+And that's it! You can define all API requests this way.
 
-guard let request = APIEndpoint.login.getURLRequest() else {return}
+## Making Requests
 
-// NetworkLogger is an micro library included inside Elegant api for logging network response and requests
+### Using Async/Await
+
+```swift
+guard let request = APIEndpoint.login(emailId: "user@example.com", password: "password").getURLRequest() else { return }
+
+// NetworkLogger is a micro library included inside Elegant API for logging network requests and responses
 NetworkLogger.log(request: request)
 
-let publisher = URLSession.shared.dataTaskPublisher(for: req)
+do {
+    let (data, response) = try await URLSession.shared.data(for: request)
+    NetworkLogger.log(data: data, response: response as? HTTPURLResponse, error: nil)
 
-publisher.map { output in
-    NetworkLogger.log(data: output.data, response: output.response as? HTTPURLResponse, error: nil)
-    return output
-}.sink(
-    receiveCompletion: { },
-    receiveValue: { output in
-        print(output.data)
-    }
-)
-
+    // Decode your response
+    let result = try JSONDecoder().decode(YourResponseType.self, from: data)
+    print(result)
+} catch {
+    print("Request failed: \(error)")
+}
 ```
 
-> You can also you the URLRequest for plain dataTask too.
+### Using Combine
+
+```swift
+guard let request = APIEndpoint.login(emailId: "user@example.com", password: "password").getURLRequest() else { return }
+
+// NetworkLogger is a micro library included inside Elegant API for logging network requests and responses
+NetworkLogger.log(request: request)
+
+let publisher = URLSession.shared.dataTaskPublisher(for: request)
+
+publisher
+    .map { output in
+        NetworkLogger.log(data: output.data, response: output.response as? HTTPURLResponse, error: nil)
+        return output.data
+    }
+    .decode(type: YourResponseType.self, decoder: JSONDecoder())
+    .sink(
+        receiveCompletion: { completion in
+            if case .failure(let error) = completion {
+                print("Request failed: \(error)")
+            }
+        },
+        receiveValue: { result in
+            print(result)
+        }
+    )
+```
+
+> You can also use the URLRequest for plain dataTask too.
