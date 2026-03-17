@@ -38,10 +38,6 @@ extesion MyAPI {
        }
    }
 
-   var sampleData: Data {
-       Data()
-   }
-
    var task: Task {
        switch self {
            case .getProfile,

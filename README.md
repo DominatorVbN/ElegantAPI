@@ -73,7 +73,7 @@ extension APIEndpoint: API{
     
     // HTTP method of endpoint
     var method: ElegantAPI.Method {
-    
+
         switch self {
         case .login:
             return .post
@@ -84,14 +84,9 @@ extension APIEndpoint: API{
         case changeProfileImage:
             return .put
         }
-        
+
     }
-    
-    var sampleData: Data {
-        // for mocking requests
-        Data()
-    }
-    
+
     var task: Task {
         switch self {
         

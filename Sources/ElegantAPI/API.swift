@@ -22,10 +22,7 @@ public protocol API {
     
     /// The HTTP method used in the request.
     var method: Method { get }
-    
-    /// Provides stub data for use in testing.
-    var sampleData: Data { get }
-    
+
     /// The type of HTTP task to be performed.
     var task: Task { get }
     
