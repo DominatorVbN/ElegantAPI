@@ -11,7 +11,7 @@ https://amitsamant.in/ElegantAPI/documentation/elegantapi/
 
 ## Installation
 
-Elegant api is available through Swift Package Manager
+Elegant api is available through Swift Package Manager some change
 
 add this url to `File -> Swift Packages -> Add new Dependecy`
 
